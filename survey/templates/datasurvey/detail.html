@@ -1,0 +1,21 @@
+{% extends 'base.html' %} 
+{% block content %} 
+    <a class="btn btn-secondary btn-sm mt-3 mb-3" href="{% url 'datasurvey:index' %}">Back To Polls</a>
+    <h1 class="text-center mb-3">{{ question.question_text }}</h1>
+    {% if error_message %}
+        <p>
+            <strong>{{ error_message }}</strong>
+        </p>
+    {% endif %}
+
+    <form action="{% url 'datasurvey:vote'  question.id %}" method="post">
+        {% csrf_token %}
+
+        {% for choice in question.choice_set.all %}
+            <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id}}">
+            <label for="choice{{ forloop.counter }}">{{ choice.choice_text}}</label>
+            <br>
+        {% endfor %}
+        <input type="submit" value="Vote">
+    </form>
+{% endblock %}

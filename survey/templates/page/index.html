@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="card text-center mt-3">
+        <div class="card-body">
+            <h1>Welcome to Survey App</h1>
+            <p class="lead">This is a django survey app</p>
+            <a href="{% url 'datasurvey:index' %}" class="btn btn-dark">View available surveys</a>
+        </div>
+    </div>
+{% endblock %}
